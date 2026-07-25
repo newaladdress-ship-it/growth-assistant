@@ -37,6 +37,8 @@ function AuthContent() {
         }
     }, [user]);
 
+    const redirectPath = searchParams.get('redirect') || '';
+
     const handlePostAuthRedirect = async () => {
         let urlToAnalyze = pendingUrl;
         if (!urlToAnalyze && typeof window !== 'undefined') {
@@ -52,6 +54,8 @@ function AuthContent() {
                 await saveAnalysisToFirestore(urlToAnalyze);
             }
             router.push('/analysis/loading');
+        } else if (redirectPath) {
+            router.push(redirectPath);
         } else {
             router.push('/dashboard');
         }

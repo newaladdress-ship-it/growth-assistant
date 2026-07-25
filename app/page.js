@@ -116,9 +116,19 @@ export default function LandingPage() {
                                     <button type="submit" className="bg-primary text-on-primary px-3xl py-md rounded-xl font-label-md text-label-md hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-sm cursor-pointer">
                                         Analyze Website <span className="material-symbols-outlined text-md">arrow_forward</span>
                                     </button>
-                                    <Link className="bg-white border border-outline-variant text-on-surface px-3xl py-md rounded-xl font-label-md text-label-md hover:bg-surface-container-low transition-all active:scale-95 inline-flex items-center justify-center" href="/dashboard">
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            if (user) {
+                                                router.push('/dashboard');
+                                            } else {
+                                                router.push('/auth?redirect=/dashboard');
+                                            }
+                                        }}
+                                        className="bg-white border border-outline-variant text-on-surface px-3xl py-md rounded-xl font-label-md text-label-md hover:bg-surface-container-low transition-all active:scale-95 inline-flex items-center justify-center cursor-pointer"
+                                    >
                                         View Demo
-                                    </Link>
+                                    </button>
                                 </div>
                             </form>
                         </div>

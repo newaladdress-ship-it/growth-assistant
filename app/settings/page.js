@@ -7,7 +7,10 @@ import Footer from '@/components/Footer';
 import { useAppState } from '@/lib/appState';
 import { useAuth } from '@/lib/authContext';
 
+import { useRouter } from 'next/navigation';
+
 export default function SettingsPage() {
+    const router = useRouter();
     const {
         theme,
         setTheme,
@@ -16,7 +19,13 @@ export default function SettingsPage() {
         deleteApiKey
     } = useAppState();
 
-    const { user, userProfile, updateUserProfile } = useAuth();
+    const { user, userProfile, loading: authLoading, updateUserProfile } = useAuth();
+
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth?redirect=/settings');
+        }
+    }, [user, authLoading, router]);
 
     const [nameInput, setNameInput] = useState('');
     const [emailInput, setEmailInput] = useState('');

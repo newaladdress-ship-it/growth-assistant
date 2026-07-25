@@ -2,8 +2,8 @@
 
 > **Final Project Submission Report**  
 > **Developed by:** [Imran Digitals](https://imrandigitals.online/)  
-> **Live Web Application**: [https://aigrowth-assistant.vercel.app](https://imrandigitals.online/) *(Replace with your Vercel deployment URL)*  
-> **Public GitHub Repository**: `https://github.com/your-username/aigrowth-assistant`
+> **Live Web Application**: [https://ai-growth-assistant-rho.vercel.app/](https://ai-growth-assistant-rho.vercel.app/)  
+> **Public GitHub Repository**: [https://github.com/newaladdress-ship-it/growth-assistant.git](https://github.com/newaladdress-ship-it/growth-assistant.git)
 
 ---
 
@@ -27,7 +27,7 @@ Small business owners, digital marketers, freelancers, and web developers consta
 
 ## 🌐 Live Deployed Application
 
-- **Live URL**: [https://imrandigitals.online/](https://imrandigitals.online/) *(or your custom Vercel link)*
+- **Live Deployed URL**: [https://ai-growth-assistant-rho.vercel.app/](https://ai-growth-assistant-rho.vercel.app/)
 - **Progressive Web App (PWA)**: Installable natively on **Android, macOS, Windows Desktop, and iOS**.
 
 ---
@@ -133,8 +133,8 @@ ${hasAuditedSite ? `Analyzed Target Website Context:
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/your-username/aigrowth-assistant.git
-cd aigrowth-assistant
+git clone https://github.com/newaladdress-ship-it/growth-assistant.git
+cd stitch_ai_website_growth_assistant
 ```
 
 ### Step 2: Install Dependencies
@@ -173,7 +173,7 @@ npm run start
    git add .
    git commit -m "Initial commit of AIGrowth Assistant"
    git branch -M main
-   git remote add origin https://github.com/your-username/aigrowth-assistant.git
+   git remote add origin https://github.com/newaladdress-ship-it/growth-assistant.git
    git push -u origin main
    ```
 2. Go to [Vercel.com](https://vercel.com/) and click **"Add New Project"**.

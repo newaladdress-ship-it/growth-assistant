@@ -18,7 +18,13 @@ export default function HistoryPage() {
     const router = useRouter();
 
     const { history: localHistory, setActiveReport, deleteReport } = useAppState();
-    const { user, getUserAnalyses } = useAuth();
+    const { user, loading: authLoading, getUserAnalyses } = useAuth();
+
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth?redirect=/history');
+        }
+    }, [user, authLoading, router]);
 
     useEffect(() => {
         async function fetchHistory() {

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import { useAppState } from '@/lib/appState';
@@ -9,7 +10,15 @@ import { AuditEngine } from '@/lib/auditEngine';
 
 export default function AiChatPage() {
     const { activeReport } = useAppState();
-    const { user, userProfile } = useAuth();
+    const { user, userProfile, loading: authLoading } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth?redirect=/ai-chat');
+        }
+    }, [user, authLoading, router]);
+
     const displayName = userProfile?.displayName || user?.displayName || user?.email?.split('@')[0] || 'there';
     const report = activeReport || null;
 

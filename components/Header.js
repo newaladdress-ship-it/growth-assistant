@@ -17,9 +17,13 @@ export default function Header({ title = 'Dashboard', showSearch = true }) {
     return (
         <header className="sticky top-0 z-40 w-full bg-surface/80 backdrop-blur-md border-b border-outline-variant/10 flex justify-between items-center h-16 px-lg">
             <div className="flex items-center gap-md">
-                <Link href="/" className="md:hidden p-2 hover:bg-surface-container rounded-full transition-all">
+                <button
+                    onClick={() => window.dispatchEvent(new CustomEvent('toggle-mobile-sidebar'))}
+                    className="md:hidden p-2 hover:bg-surface-container rounded-full transition-all cursor-pointer"
+                    aria-label="Open navigation menu"
+                >
                     <span className="material-symbols-outlined">menu</span>
-                </Link>
+                </button>
                 <h1 className="font-headline-md text-headline-md font-bold text-on-surface">{title}</h1>
             </div>
 

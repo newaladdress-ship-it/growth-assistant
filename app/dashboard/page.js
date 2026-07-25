@@ -5,13 +5,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { useAppState } from '@/lib/appState';
+import { useAuth } from '@/lib/authContext';
+import { useEffect } from 'react';
 
 export default function DashboardPage() {
     const [urlInput, setUrlInput] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const router = useRouter();
+    const { user, loading: authLoading } = useAuth();
 
     const {
         history,
@@ -20,6 +22,21 @@ export default function DashboardPage() {
         setActiveReport,
         deleteReport
     } = useAppState();
+
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth?redirect=/dashboard');
+        }
+    }, [user, authLoading, router]);
+
+    if (authLoading || !user) {
+        return (
+            <div className="min-h-screen bg-background flex flex-col items-center justify-center text-on-surface gap-md">
+                <span className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></span>
+                <p className="font-label-md text-label-md text-on-surface-variant font-medium">Please sign in to access your dashboard...</p>
+            </div>
+        );
+    }
 
     const handleAuditSubmit = (e) => {
         e.preventDefault();
