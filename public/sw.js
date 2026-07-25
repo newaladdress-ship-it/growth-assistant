@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aigrowth-pwa-v1';
+const CACHE_NAME = 'aigrowth-pwa-v2';
 
 const STATIC_ASSETS = [
   '/',
@@ -36,7 +36,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   
-  // Skip non-GET requests or chrome-extension scheme
+  // Skip non-GET requests or cross-origin extension schemes
   if (request.method !== 'GET' || !request.url.startsWith('http')) {
     return;
   }
@@ -46,12 +46,21 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+          if (response && response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+          }
           return response;
         })
-        .catch(() => {
-          return caches.match(request).then((cached) => cached || caches.match('/'));
+        .catch(async () => {
+          const cached = await caches.match(request);
+          if (cached) return cached;
+          const fallback = await caches.match('/');
+          if (fallback) return fallback;
+          return new Response('<html><body><h1>Offline</h1><p>Please check your network connection.</p></body></html>', {
+            status: 503,
+            headers: { 'Content-Type': 'text/html' }
+          });
         })
     );
     return;
@@ -60,17 +69,25 @@ self.addEventListener('fetch', (event) => {
   // Handle static asset requests (stale-while-revalidate)
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
-      const fetchPromise = fetch(request)
-        .then((networkResponse) => {
+      if (cachedResponse) {
+        // Revalidate in background
+        fetch(request).then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-            const responseClone = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, networkResponse));
           }
-          return networkResponse;
-        })
-        .catch(() => cachedResponse);
+        }).catch(() => {});
+        return cachedResponse;
+      }
 
-      return cachedResponse || fetchPromise;
+      return fetch(request).then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+        }
+        return networkResponse;
+      }).catch(() => {
+        return new Response('', { status: 404, statusText: 'Not Found' });
+      });
     })
   );
 });

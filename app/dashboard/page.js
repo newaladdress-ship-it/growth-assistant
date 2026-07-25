@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { useAppState } from '@/lib/appState';
 import { useAuth } from '@/lib/authContext';
 import { useEffect } from 'react';
