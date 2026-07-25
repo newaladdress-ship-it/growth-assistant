@@ -34,7 +34,7 @@ export async function POST(req) {
         // 1. Conversational Greetings & Feelings
         if (lower === 'hi' || lower === 'hello' || lower === 'hey' || lower === 'hey there' || lower === 'love u' || lower.includes('love you')) {
             return NextResponse.json({
-                result: `Hello! Thank you! How can I assist you today? Feel free to ask me general knowledge questions, math calculations, geography, science, history, or website optimization strategies${domain ? ` for <strong>${domain}</strong>` : ''}!`
+                result: `Hello! Thank you! How can I assist you today? Feel free to ask me!`
             });
         }
 
