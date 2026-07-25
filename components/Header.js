@@ -15,64 +15,70 @@ export default function Header({ title = 'Dashboard', showSearch = true }) {
     const photoURL = userProfile?.photoURL || user?.photoURL || null;
 
     return (
-        <header className="sticky top-0 z-40 w-full bg-surface/80 backdrop-blur-md border-b border-outline-variant/10 flex justify-between items-center h-16 px-lg">
-            <div className="flex items-center gap-md">
-                <button
-                    onClick={() => window.dispatchEvent(new CustomEvent('toggle-mobile-sidebar'))}
-                    className="md:hidden p-2 hover:bg-surface-container rounded-full transition-all cursor-pointer"
-                    aria-label="Open navigation menu"
-                >
-                    <span className="material-symbols-outlined">menu</span>
-                </button>
-                <h1 className="font-headline-md text-headline-md font-bold text-on-surface">{title}</h1>
+        <header className="sticky top-0 z-40 w-full bg-surface/90 backdrop-blur-md border-b border-outline-variant/10 flex justify-between items-center h-16 px-md md:px-lg">
+            <div className="flex items-center gap-sm md:gap-md">
+                {/* Mobile Brand Logo */}
+                <Link href="/" className="md:hidden flex items-center gap-1.5 font-bold text-primary font-headline-md text-lg">
+                    <span>AIGrowth</span>
+                </Link>
+                <h1 className="hidden md:block font-headline-md text-headline-md font-bold text-on-surface">{title}</h1>
             </div>
 
-            <div className="flex items-center gap-lg">
+            <div className="flex items-center gap-xs sm:gap-md">
+                {/* Mobile Navigation Quick Bar */}
+                <nav className="flex md:hidden items-center gap-1 mr-1">
+                    <Link href="/dashboard" className="p-1.5 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-primary transition-colors" title="Dashboard">
+                        <span className="material-symbols-outlined text-[20px]">dashboard</span>
+                    </Link>
+                    <Link href="/ai-chat" className="p-1.5 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-primary transition-colors" title="AI Assistant">
+                        <span className="material-symbols-outlined text-[20px]">chat</span>
+                    </Link>
+                    <Link href="/history" className="p-1.5 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-primary transition-colors" title="History">
+                        <span className="material-symbols-outlined text-[20px]">history</span>
+                    </Link>
+                </nav>
+
                 {showSearch && (
-                    <div className="hidden sm:flex items-center bg-surface-container-low px-md py-sm rounded-full border border-outline-variant/30 w-64">
+                    <div className="hidden sm:flex items-center bg-surface-container-low px-md py-sm rounded-full border border-outline-variant/30 w-48 md:w-64">
                         <span className="material-symbols-outlined text-outline text-md">search</span>
                         <input
                             className="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-full ml-xs text-on-surface outline-none"
-                            placeholder="Search projects..."
+                            placeholder="Search..."
                             type="text"
                         />
                     </div>
                 )}
 
-                <div className="flex items-center gap-sm">
+                <div className="flex items-center gap-xs">
                     {/* Header PWA Install Button */}
                     <button
                         onClick={installApp}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 text-xs font-semibold active:scale-95 transition-all cursor-pointer"
+                        className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 text-xs font-semibold active:scale-95 transition-all cursor-pointer"
                         title={isInstalled ? 'App Installed' : 'Install App'}
                     >
-                        <span className="material-symbols-outlined text-[18px]">
+                        <span className="material-symbols-outlined text-[16px]">
                             {isInstalled ? 'check_circle' : 'download'}
                         </span>
-                        <span className="hidden xs:inline">
-                            {isInstalled ? 'Installed' : 'Install App'}
+                        <span className="hidden sm:inline">
+                            {isInstalled ? 'Installed' : 'Install'}
                         </span>
                     </button>
 
-                    <Link href="/history" className="hover:bg-surface-container rounded-full p-2 cursor-pointer active:opacity-70 transition-all">
-                        <span className="material-symbols-outlined">search</span>
-                    </Link>
-                    <Link href="/settings" className="hover:bg-surface-container rounded-full p-2 cursor-pointer active:opacity-70 transition-all relative">
-                        <span className="material-symbols-outlined">notifications</span>
-                        <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+                    <Link href="/settings" className="hover:bg-surface-container rounded-full p-1.5 cursor-pointer active:opacity-70 transition-all text-on-surface-variant" title="Settings">
+                        <span className="material-symbols-outlined text-[20px]">settings</span>
                     </Link>
 
                     {user ? (
-                        <div className="flex items-center gap-xs">
-                            <Link href="/settings" className="flex items-center gap-2 hover:bg-surface-container py-1 px-2.5 rounded-full border border-outline-variant/30 cursor-pointer">
+                        <div className="flex items-center gap-xs ml-1">
+                            <Link href="/settings" className="flex items-center gap-1.5 hover:bg-surface-container py-1 px-2 rounded-full border border-outline-variant/30 cursor-pointer">
                                 {photoURL ? (
-                                    <img src={photoURL} alt={displayName} className="w-8 h-8 rounded-full object-cover border border-primary/40" />
+                                    <img src={photoURL} alt={displayName} className="w-7 h-7 rounded-full object-cover border border-primary/40" />
                                 ) : (
-                                    <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">
+                                    <div className="w-7 h-7 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">
                                         {displayName.charAt(0).toUpperCase()}
                                     </div>
                                 )}
-                                <span className="hidden sm:inline font-label-md text-label-md text-on-surface max-w-[120px] truncate">
+                                <span className="hidden lg:inline font-label-md text-label-md text-on-surface max-w-[100px] truncate">
                                     {displayName}
                                 </span>
                             </Link>
@@ -85,7 +91,7 @@ export default function Header({ title = 'Dashboard', showSearch = true }) {
                             </button>
                         </div>
                     ) : (
-                        <Link href="/auth" className="text-primary font-label-md text-label-md px-md py-sm hover:underline">
+                        <Link href="/auth" className="text-primary font-label-md text-xs sm:text-label-md px-sm py-xs hover:underline">
                             Log In
                         </Link>
                     )}
