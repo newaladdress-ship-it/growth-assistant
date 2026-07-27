@@ -5,6 +5,8 @@
 > **Live Web Application**: [https://ai-growth-assistant-rho.vercel.app/](https://ai-growth-assistant-rho.vercel.app/)  
 > **Public GitHub Repository**: [https://github.com/newaladdress-ship-it/growth-assistant.git](https://github.com/newaladdress-ship-it/growth-assistant.git)
 
+![AIGrowth Analysis Report Dashboard](public/dashboard-audit-report.png)
+
 ---
 
 ## 📌 Problem Statement & Target Audience
@@ -44,6 +46,7 @@ Small business owners, digital marketers, freelancers, and web developers consta
 - Comprehensive score gauge displaying overall growth rating (0–100).
 - Categorized metric cards for Performance, SEO, Security, and Accessibility.
 - Priority Action Matrix prioritizing high-impact optimizations.
+- **1-Click Audit Export**: Instant download of complete technical audit metrics as structured `.json` reports (`domain_audit_report.json`).
 
 ### 3. AI-Powered Neural Growth Assistant (`/ai-chat`)
 - Context-aware chatbot that ingests your site's exact audit metrics (LCP, TTFB, SEO health, Meta tags) to deliver tailored advice.
@@ -109,17 +112,23 @@ ${hasAuditedSite ? `Analyzed Target Website Context:
 
 ## 📸 Screenshots of the App in Action
 
-*(Include at least 3 screenshots in your GitHub repository `public/screenshots/` folder)*
-
 1. **Dashboard & Real-Time Audit Report**  
-   ![Dashboard Screenshot](public/icon-512.png)  
+   ![Dashboard Audit Report](public/dashboard-audit-report.png)  
    *Overview of overall growth rating, Core Web Vitals, and technical recommendations.*
 
-2. **AI Neural Growth Assistant (`/ai-chat`)**  
-   ![AI Assistant Screenshot](public/icon-512.png)  
-   *Interactive AI chat giving site-specific SEO and speed optimizations.*
+2. **1-Click Audit Report Export (`Export Report`)**  
+   ![Audit Report JSON Export](public/export-report-feature.png)  
+   *Export complete technical website audit data into formatted JSON reports.*
 
-3. **PWA Cross-Device Installation**  
+3. **AI Neural Growth Assistant (`/ai-chat`)**  
+   ![AI Neural Growth Assistant Screenshot](public/ai-chat-assistant.png)  
+   *Interactive AI chat giving site-specific SEO, speed optimizations, and general knowledge/math answers.*
+
+4. **Audit History & Local Sync (`/history`)**  
+   ![Audit History Screenshot](public/audit-history.png)  
+   *View, search, filter, export, and manage historical website audit reports.*
+
+5. **PWA Cross-Device Installation**  
    ![PWA Installation Screenshot](public/icon-512.png)  
    *Installable PWA banner and sidebar button on desktop and mobile.*
 
