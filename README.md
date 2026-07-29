@@ -2,7 +2,7 @@
 
 > **Final Project Submission Report**  
 > **Developed by:** [Imran Digitals](https://imrandigitals.online/)  
-> **Live Web Application**: [https://ai-growth-assistant-rho.vercel.app/](https://ai-growth-assistant-rho.vercel.app/)  
+> **Live Web Application**: [https://ai-growth-assistant-app.vercel.app/](https://ai-growth-assistant-app.vercel.app/)  
 > **Public GitHub Repository**: [https://github.com/newaladdress-ship-it/growth-assistant.git](https://github.com/newaladdress-ship-it/growth-assistant.git)
 
 ![AIGrowth Analysis Report Dashboard](public/dashboard-audit-report.png)
@@ -29,7 +29,7 @@ Small business owners, digital marketers, freelancers, and web developers consta
 
 ## 🌐 Live Deployed Application
 
-- **Live Deployed URL**: [https://ai-growth-assistant-rho.vercel.app/](https://ai-growth-assistant-rho.vercel.app/)
+- **Live Deployed URL**: [https://ai-growth-assistant-app.vercel.app/](https://ai-growth-assistant-app.vercel.app/)
 - **Progressive Web App (PWA)**: Installable natively on **Android, macOS, Windows Desktop, and iOS**.
 
 ---
